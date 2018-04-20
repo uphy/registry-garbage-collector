@@ -1,5 +1,8 @@
 # Docker Registry Garbage Collector
 
+![Docker Build Status](https://img.shields.io/docker/build/uphy/registry-garbage-collector.svg)
+![Docker Automated build](https://img.shields.io/docker/automated/uphy/registry-garbage-collector.svg)
+
 [Docker Registry](https://github.com/docker/distribution) has `registry garbage collect` command which removes all garbages.
 The latest unreleased Docker Registry has one more option '-m' which removes also untagged images.
 To use the latest feature, I've published this image.
