@@ -12,7 +12,32 @@ It removes the mounted /data directory.
 
 ## How to use
 
+Collect garbages:
+
 ```bash
-$ docker run -d -v "$(pwd)/data/registry:/var/lib/registry" registry:2.6
+$ docker run -d -p "5000:5000" -v "$(pwd)/data/registry:/var/lib/registry" registry:2.6
+$ docker pull bash
+$ docker tag bash localhost:5000/bash
+$ docker push localhost:5000/bash
 $ docker run -i --rm -v "$(pwd)/data/registry:/target" uphy/registry-garbage-collector
+```
+
+Garbage collector server(with basic authentication):
+
+```bash
+docker run -i --rm \
+  -p "8080:8080" \
+  -v "$(pwd)/data/registry:/target" \
+  uphy/registry-garbage-collector server
+```
+
+Garbage collector server(with basic authentication):
+
+```bash
+docker run -i --rm \
+  -e "AUTH_USER=admin" \
+  -e "AUTH_PASSWORD=password"  \
+  -p "8080:8080" \
+  -v "$(pwd)/data/registry:/target" \
+  uphy/registry-garbage-collector server
 ```
